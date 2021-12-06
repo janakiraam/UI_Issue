@@ -4,7 +4,7 @@ import pandas as pd
 #from flasgger import Swagger
 import streamlit as st 
 
-from PIL import Image
+#from PIL import Image
 
 #app=Flask(__name__)
 #Swagger(app)
@@ -28,7 +28,7 @@ def main():
     st.title("UI Issue Prediction For Performance") 
     html_temp = """
     <div style="background-color:tomato;padding:10px">
-    <h2 style="color:white;text-align:center;">UI Issue Prediction For Performance - ML App </h2>
+    <h2 style="color:white;text-align:center;"> UI Issue Prediction For Performance-ML App </h2>
     </div>
     """
     st.markdown(html_temp,unsafe_allow_html=True)
@@ -39,9 +39,19 @@ def main():
     result=""
     if st.button("Predict"):
         result=K_Means_UI_Issue(Diff_TTVC_TTLC,E2E,cli_cpu,TTVC)
-    st.success('The output is {}'.format(result))
+    if result==0:
+        result="No issue with UI"
+        st.success(result)
+    elif result==1:
+        result="UI - issue in performance"
+        st.warning(result)
+    elif result==2:
+        result="UI - higher issue in performance"
+        st.error(result)
+    else:
+        result="Click on Predict button"
+      
+    #st.success(result)
 
 if __name__=='__main__':
     main()
-    
-    
