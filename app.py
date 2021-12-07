@@ -40,13 +40,13 @@ def main():
     if st.button("Predict"):
         result=K_Means_UI_Issue(Diff_TTVC_TTLC,E2E,cli_cpu,TTVC)
     if result==0:
-        result="No issue with UI"
+        result="UI - Low Risk"
         st.success(result)
     elif result==1:
-        result="UI - issue in performance"
+        result="UI - High Risk"
         st.warning(result)
     elif result==2:
-        result="UI - higher issue in performance"
+        result="UI - Very High Risk"
         st.error(result)
     else:
         result="Click on Predict button"
